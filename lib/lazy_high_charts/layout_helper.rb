@@ -5,13 +5,13 @@ module LazyHighCharts
 
     def high_chart(placeholder, object  , &block)
       object.html_options.merge!({:id=>placeholder})
-      object.options[:chart][:renderTo] = placeholder
+      object.options["chart"]["renderTo"] = placeholder
       high_graph(placeholder,object , &block).concat(content_tag("div","", object.html_options))
     end
 
     def high_stock(placeholder, object  , &block)
       object.html_options.merge!({:id=>placeholder})
-      object.options[:chart][:renderTo] = placeholder
+      object.options["chart"]["renderTo"] = placeholder
       high_graph_stock(placeholder,object , &block).concat(content_tag("div","", object.html_options))
     end
 
@@ -57,13 +57,13 @@ module LazyHighCharts
       end
 
       if defined?(raw)
-        return raw(graph) 
+        return raw(graph)
       else
         return graph
       end
 
     end
-    
+
     private
 
     def generate_json_from_hash hash
@@ -88,7 +88,7 @@ module LazyHighCharts
     def generate_json_from_array array
       array.map{|value| generate_json_from_value(value)}.join(",")
     end
-    
+
   end
 end
 
